@@ -2,8 +2,8 @@ package yummy.cake.com.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import yummy.cake.com.dto.RegistrationRequest;
-import yummy.cake.com.service.registration.client.CustomerRegistrationService;
+import yummy.cake.com.dto.RegistrationRequestDto;
+import yummy.cake.com.service.registration.customer.CustomerRegistrationService;
 
 import static yummy.cake.com.controller.RegistrationController.*;
 
@@ -17,8 +17,8 @@ public class RegistrationController {
     private final CustomerRegistrationService customerRegistrationService;
 
     @PostMapping(CUSTOMER)
-    public void registerCustomer(@RequestBody RegistrationRequest registrationRequest){
-        customerRegistrationService.save(registrationRequest);
+    public void registerCustomer(@RequestBody RegistrationRequestDto registrationRequestDto){
+        customerRegistrationService.save(registrationRequestDto);
     }
 
 }
