@@ -15,6 +15,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import yummy.cake.com.dto.security.LoginViewModel;
 import yummy.cake.com.principal.UserPrincipal;
 
@@ -25,7 +27,6 @@ import java.util.List;
 
 import static com.auth0.jwt.algorithms.Algorithm.*;
 import static yummy.cake.com.security.JwtProperties.*;
-
 @RequiredArgsConstructor
 public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
