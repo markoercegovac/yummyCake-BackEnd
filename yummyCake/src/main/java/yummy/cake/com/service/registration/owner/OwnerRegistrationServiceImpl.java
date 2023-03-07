@@ -1,4 +1,4 @@
-package yummy.cake.com.service.registration.customer;
+package yummy.cake.com.service.registration.owner;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -10,20 +10,20 @@ import yummy.cake.com.repository.RegistrationRequestRepository;
 import yummy.cake.com.service.notification.NotificationService;
 
 import static yummy.cake.com.enums.RoleEnum.ROLE_CUSTOMER;
+import static yummy.cake.com.enums.RoleEnum.ROLE_OWNER;
 
 @Service
 @RequiredArgsConstructor
-public class CustomerRegistrationServiceImpl implements CustomerRegistrationService {
+public class OwnerRegistrationServiceImpl implements  OwnerRegistrationService{
 
-    private final RegistrationRequestRepository repository;
     private final PasswordEncoder passwordEncoder;
-
+    private final RegistrationRequestRepository repository;
     private final NotificationService notificationService;
 
     @Override
     public void save(RegistrationRequestDto request) {
         RegistrationRequest registration = new RegistrationRequest();
-        registration.setType(ROLE_CUSTOMER.value);
+        registration.setType(ROLE_OWNER.value);
         registration.setUsername(request.getEmail());
         registration.setPassword(passwordEncoder.encode(request.getPassword()));
         registration.setFirstName(request.getFirstName());
