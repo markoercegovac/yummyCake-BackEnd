@@ -2,6 +2,7 @@ package yummy.cake.com.principal;
 
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import org.hibernate.Hibernate;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -19,7 +20,7 @@ public class UserPrincipal implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return this.account.getRoles().stream()
+        return account.getRoles().stream()
                 .map(r -> new SimpleGrantedAuthority(prefix + r.getName()))
                 .collect(Collectors.toList());
     }

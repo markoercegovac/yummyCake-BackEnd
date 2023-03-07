@@ -14,7 +14,7 @@ import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
-public class ActivationCustomerServiceImpl implements ActivationCustomerService{
+public class ActivationAccountServiceImpl implements ActivationAccountService {
 
     private final RegistrationRequestRepository requestRepository;
     private final UserAccountRepository userAccountRepository;
@@ -33,5 +33,6 @@ public class ActivationCustomerServiceImpl implements ActivationCustomerService{
         Role role = roleRepository.findByName(registrationRequest.getType());
         account.setRoles(List.of(role));
         userAccountRepository.save(account);
+        requestRepository.delete(registrationRequest);
     }
 }

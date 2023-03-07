@@ -14,6 +14,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
@@ -32,6 +33,7 @@ import static org.springframework.security.config.http.SessionCreationPolicy.STA
 @EnableWebSecurity
 @EnableMethodSecurity
 @RequiredArgsConstructor
+@Transactional
 public class SecurityConfiguration {
     private final UserPrincipalDetailsService userPrincipalDetailsService;
     private final UserAccountRepository accountRepository;
@@ -58,7 +60,7 @@ public class SecurityConfiguration {
                 .and()
                 .addFilter(new JwtAuthenticationFilter(authenticationManager(http.getSharedObject(AuthenticationConfiguration.class))))
                 .addFilter(new JwtAuthorizationFilter(authenticationManager(http.getSharedObject(AuthenticationConfiguration.class)), accountRepository))
-                .authorizeHttpRequests().requestMatchers("/api/registration/customer","/api/activation/customer/**").permitAll()
+                .authorizeHttpRequests().requestMatchers("/api/registration/**","/api/activation/owner/**","/api/activation/customer/**").permitAll()
                 .requestMatchers("/login").permitAll();
 
         return http.build();

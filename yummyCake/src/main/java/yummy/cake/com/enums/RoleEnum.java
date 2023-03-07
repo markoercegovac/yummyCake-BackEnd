@@ -1,8 +1,8 @@
 package yummy.cake.com.enums;
 
 public enum RoleEnum {
-    ROLE_CUSTOMER("ROLE_CUSTOMER"),
-    ROLE_OWNER("ROLE_OWNER");
+    ROLE_CUSTOMER("CUSTOMER"),
+    ROLE_OWNER("OWNER");
 
     public final String value;
 

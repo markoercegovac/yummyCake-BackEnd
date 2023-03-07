@@ -6,6 +6,7 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.hibernate.Hibernate;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -54,6 +55,8 @@ public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
                 .build()
                 .verify(token)
                 .getSubject();
+
+
 
         if (userName != null) {
             UserAccount account = repository.findByUsername(userName);

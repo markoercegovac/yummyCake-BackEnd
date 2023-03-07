@@ -2,6 +2,9 @@ package yummy.cake.com.bom;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collection;
 
@@ -9,6 +12,7 @@ import static jakarta.persistence.GenerationType.IDENTITY;
 
 @Data
 @Entity
+@Transactional
 public class UserAccount {
 
     private static final String TABLE_NAME = "accounts_roles";
@@ -32,8 +36,8 @@ public class UserAccount {
     @Column
     private boolean isNonBanned;
 
-
-    @ManyToMany
+    @Fetch(FetchMode.SUBSELECT)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = TABLE_NAME,
             joinColumns = @JoinColumn(name = JOIN_COLUMN_USER, referencedColumnName = REFER_COLUMN_NAME),
             inverseJoinColumns = @JoinColumn(name = JOIN_COLUMN_ROLE, referencedColumnName = REFER_COLUMN_NAME))
