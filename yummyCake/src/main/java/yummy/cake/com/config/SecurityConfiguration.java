@@ -60,7 +60,7 @@ public class SecurityConfiguration {
                 .and()
                 .addFilter(new JwtAuthenticationFilter(authenticationManager(http.getSharedObject(AuthenticationConfiguration.class))))
                 .addFilter(new JwtAuthorizationFilter(authenticationManager(http.getSharedObject(AuthenticationConfiguration.class)), accountRepository))
-                .authorizeHttpRequests().requestMatchers("/api/registration/**","/api/activation/owner/**","/api/activation/customer/**").permitAll()
+                .authorizeHttpRequests().requestMatchers("/api/registration/**","/api/registration/shop","/api/activation/owner/**","/api/activation/customer/**").permitAll()
                 .requestMatchers("/login").permitAll();
 
         return http.build();
