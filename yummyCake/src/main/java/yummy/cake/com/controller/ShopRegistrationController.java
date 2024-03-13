@@ -1,11 +1,9 @@
 package yummy.cake.com.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import yummy.cake.com.dto.RegistrationShopRequest;
+import org.springframework.web.bind.annotation.*;
+import yummy.cake.com.dto.shopRegistration.ShopRegistrationRequest;
+import yummy.cake.com.service.registration.shop.ShopRegistrationService;
 
 import static yummy.cake.com.controller.ShopRegistrationController.SHOP_REGISTRATION;
 
@@ -16,8 +14,9 @@ import static yummy.cake.com.controller.ShopRegistrationController.SHOP_REGISTRA
 public class ShopRegistrationController {
     public final static String SHOP_REGISTRATION = "/api/registration/shop";
 
+    private final ShopRegistrationService service;
     @PostMapping
-    public void shopRegistration(@RequestBody RegistrationShopRequest request){
-        System.out.println(request);
+    public void shopRegistration(@RequestBody ShopRegistrationRequest request){
+        service.register(request);
     }
 }

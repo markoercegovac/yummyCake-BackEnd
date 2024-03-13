@@ -1,6 +1,5 @@
-package yummy.cake.com.dto;
+package yummy.cake.com.dto.shopRegistration;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -10,7 +9,7 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Setter
-public class RegistrationShopRequest {
+public class ShopRegistrationRequest {
     private String name;
     private String city;
     private String country;

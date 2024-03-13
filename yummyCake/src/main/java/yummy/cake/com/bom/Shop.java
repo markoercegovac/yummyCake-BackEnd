@@ -3,13 +3,11 @@ package yummy.cake.com.bom;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.util.Collection;
-
 import static jakarta.persistence.GenerationType.IDENTITY;
 
 @Data
 @Entity
-public class Role {
+public class Shop {
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
@@ -18,4 +16,7 @@ public class Role {
     @Column
     private String name;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "address_id", referencedColumnName = "id")
+    private Address address;
 }
